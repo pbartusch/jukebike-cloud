@@ -45,6 +45,8 @@ https://developer.spotify.com/documentation/general/guides/authorization-guide/#
 3. Encode (base64) User and Secret in one String: "clientid:secret"
 4. Get Token: curl -X "POST" -H "Authorization: Basic [put encoded key here]" -d grant_type=client_credentials https://accounts.spotify.com/api/token
 
+
+,
 How to use Search Functionality?
 https://developer.spotify.com/console/get-search-item/?q=tania+bowra&type=artist
 
