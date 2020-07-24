@@ -31,7 +31,7 @@ def handler(event, context):
         #for i in response['Items']:
         track_list = response['Items']
 
-        track_list.sort(key=get_timestamp)
+        track_list.sort(key=get_timestamp, reverse=False)
 
         return_list = []
         for i in track_list:
