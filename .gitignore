@@ -12,3 +12,4 @@ dist
 cdk.out
 build
 secret_config.py
+secret_config.ts

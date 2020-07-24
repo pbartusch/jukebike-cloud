@@ -3,6 +3,19 @@
 
 # JUKEBIKE WEB APP
 
+
+Add the following file to path `jukebike-cloud/jukebike/jukebike-webapp/src/environments/`
+
+`secret_config.ts`
+
+With the following contents:
+
+```
+export const JUKEBIKE_CONF = {
+  API_ROOT: '<protocol and domain of jukebike cloud API>'
+}
+```
+
 ## Development setup
 
 Have the latest `Node.js` and `npm` installed.
