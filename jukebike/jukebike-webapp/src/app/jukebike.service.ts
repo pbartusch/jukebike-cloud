@@ -58,13 +58,14 @@ export class JukeBikeService {
 
   wishTrack(trackUri: string, username: string): Promise<WishConfirmation> {
     return this.http
-      .post(
-        this.API_ROOT + this.CALL_WISH_TRACK,
-        {
+      .post(this.API_ROOT + this.CALL_WISH_TRACK,
+        JSON.stringify({
             'trackUri': trackUri,
             'username': username
-        },
-        { headers:this.API_HEADERS })
+        }),
+        {
+          headers:this.API_HEADERS
+        })
       .toPromise()
       .then(resp => resp as WishConfirmation)
   }
