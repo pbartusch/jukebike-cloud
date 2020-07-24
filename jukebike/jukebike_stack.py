@@ -28,6 +28,8 @@ class JukebikeStack(core.Stack):
         hosted_zone_name = DOMAIN_WEBSITE['hosted_zone_name']
         hosted_zone_id = DOMAIN_WEBSITE['hosted_zone_id']
 
+        #self.lambda_code = aws_lambda.Code.from_cfn_parameters()
+
         # retrieve hosted zone
         hosted_zone = aws_route53.HostedZone.from_hosted_zone_attributes(self, 'hostedZone',
                                                                          hosted_zone_id=hosted_zone_id,

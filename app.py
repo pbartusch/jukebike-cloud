@@ -3,6 +3,7 @@
 from aws_cdk import core
 
 from jukebike.jukebike_stack import JukebikeStack
+from jukebike.pipeline_stack2 import PipelineStack2
 
 from secret_config import AWS_ENV
 
@@ -39,6 +40,10 @@ from secret_config import AWS_ENV
 env_EU = core.Environment(account=AWS_ENV['ACCOUNT'], region=AWS_ENV['REGION'])
 
 app = core.App()
-JukebikeStack(app, "jukebike")
+jukebike_stack = JukebikeStack(app, "jukebike")
+
+#PipelineStack(app, "PipelineDeployingLambdaStack",
+#    lambda_code=jukebike_stack.lambda_code)
+#PipelineStack2(app, "PipelineDeployStack")
 
 app.synth()
