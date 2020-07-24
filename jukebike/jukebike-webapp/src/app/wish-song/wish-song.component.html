@@ -1,1 +1,14 @@
-<button (click)="submitTrackWish()">Track wünschen</button>
+<ng-container *ngIf="currentWish">
+  <p>
+    {{ currentWish.name }}
+    -
+    {{ currentWish.uri }}
+  </p>
+  <input class="form-control"
+    type="text"
+    placeholder="Mein Name ..."
+    [(ngModel)]="myName">
+  <button (click)="submitTrackWish()">
+    Track wünschen
+  </button>
+</ng-container>

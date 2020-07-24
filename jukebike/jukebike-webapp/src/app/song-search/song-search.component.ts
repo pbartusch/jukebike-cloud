@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
-import { JukeBikeService, JukeSearchResult, JukeTrack } from '../jukebike.service'
+import { JukeBikeService, JukeTrack } from '../jukebike.service'
 
 @Component({
   selector: 'app-song-search',
@@ -10,10 +11,11 @@ import { JukeBikeService, JukeSearchResult, JukeTrack } from '../jukebike.servic
 export class SongSearchComponent implements OnInit {
 
   searchInput: string = ''
-  resultList: Array<JukeSearchResult> = []
+  resultList: Array<JukeTrack> = []
 
   constructor(
-    private jukeBikeService: JukeBikeService
+    private jukeBikeService: JukeBikeService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -35,8 +37,10 @@ export class SongSearchComponent implements OnInit {
     }
   }
 
-  wishSong(idx: int) {
+  wishSong(idx) {
     console.log('In wishSong :: idx = ' + idx)
+    this.jukeBikeService.currentWish = this.resultList[idx]
+    this.router.navigate(['/wish'])
   }
 
 }

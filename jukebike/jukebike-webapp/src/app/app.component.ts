@@ -7,5 +7,5 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'jukebike-webapp';
+  title = 'JukeBike.de - #saveThePlanetWithMusic';
 }

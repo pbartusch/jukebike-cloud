@@ -1,1 +1,7 @@
-<p>confirm-wish works!</p>
+<ng-container *ngIf="currentConfirmation">
+  <p>
+    Position in der Warteschlange: {{ currentConfirmation.queuePosition }}
+    -
+    Noch warten: {{ currentConfirmation.secondsToWait }} Sekunden
+  </p>
+</ng-container>

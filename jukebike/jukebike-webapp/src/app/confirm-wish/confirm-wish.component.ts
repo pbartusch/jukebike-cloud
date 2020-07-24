@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { JukeBikeService } from '../jukebike.service'
 
 @Component({
   selector: 'app-confirm-wish',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConfirmWishComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private jukeBikeService: JukeBikeService
+  ) { }
 
   ngOnInit(): void {
   }
+
+  currentConfirmation = this.jukeBikeService.currentConfirmation
 
 }

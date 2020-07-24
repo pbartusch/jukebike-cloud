@@ -5,6 +5,7 @@ import { WishSongComponent } from './wish-song/wish-song.component';
 import { ConfirmWishComponent } from './confirm-wish/confirm-wish.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/search', pathMatch: 'full' },
   { path: 'search', component: SongSearchComponent },
   { path: 'wish', component: WishSongComponent },
   { path: 'confirm', component: ConfirmWishComponent }

@@ -17,8 +17,8 @@ export class JukeTrack {
  */
 export class WishConfirmation {
   status: string;
-  queuePosition: int;
-  secondsToWait: int;
+  queuePosition: number;
+  secondsToWait: number;
 }
 
 /**
@@ -29,6 +29,9 @@ export class WishConfirmation {
   providedIn: 'root'
 })
 export class JukeBikeService {
+
+  currentWish: JukeTrack = null
+  currentConfirmation: WishConfirmation = null
 
   // TODO make dynamic / configurable
   private API_ROOT = ""

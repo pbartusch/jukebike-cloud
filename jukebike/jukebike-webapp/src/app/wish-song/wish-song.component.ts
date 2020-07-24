@@ -1,5 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { JukeBikeService, JukeSearchResult, JukeTrack } from '../jukebike.service'
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { JukeBikeService, JukeTrack } from '../jukebike.service'
 
 @Component({
   selector: 'app-wish-song',
@@ -8,29 +11,38 @@ import { JukeBikeService, JukeSearchResult, JukeTrack } from '../jukebike.servic
 })
 export class WishSongComponent implements OnInit {
 
-  @Input songWish: JukeTrack = null;
+  myName = ''
 
   constructor(
-    private jukeBikeService: JukeBikeService
+    private jukeBikeService: JukeBikeService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
   }
 
+  currentWish = this.jukeBikeService.currentWish
+
   submitTrackWish() {
+    /*
     // TODO remove
     this.songWish = new JukeTrack()
     this.songWish.name = 'Jay-Z - 99 Problems, but the bitch aint one ;-)'
     this.songWish.uri = 'spotify:track:7IdFdRlCjUi6kkhbPoRfnw'
-    let username = "Paule Meister"
+    */
+    console.log('In submitTrackWish :: currentWish = ' + JSON.stringify(this.currentWish))
+    console.log(':: myName = ' + this.myName)
 
-    console.log('In submitTrackWish :: songWish.uri = ' + this.songWish.uri)
-    console.log(':: username = ' + username)
-
-    this.jukeBikeService.wishTrack(
-      this.songWish.uri,
-      username
-    )
+    this.jukeBikeService
+      .wishTrack(
+        this.currentWish.uri,
+        this.myName
+      )
+      .then(newWishConf => {
+        console.log('In submitTrackWish :: then :: newWishConf = ' + JSON.stringify(newWishConf))
+        this.jukeBikeService.currentConfirmation = newWishConf
+        this.router.navigate(['/confirm'])
+      })
   }
 
 }
