@@ -23,6 +23,9 @@ setuptools.setup(
         "aws-cdk.aws-lambda",
         "aws-cdk.aws-apigateway",
         "aws-cdk.aws-certificatemanager",
+        "aws-cdk.aws_route53",
+        "aws-cdk.aws_route53_targets",
+        "aws-cdk.aws_dynamodb",
         "boto3"
     ],
 

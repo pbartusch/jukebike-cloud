@@ -7,17 +7,24 @@ from secret_config import SPOTIFY_AUTH
 # TODO: create lambda deployment package for depencencies instead of using deprecated: botocore.venored requests
 # TODO: create a track class? same as spotify.track class?
 
-def handler(main, context):
+def handler(event, context):
     # get token
-    # todo remove secret before git
     token_response = requests.post('https://accounts.spotify.com/api/token', headers={
         'Authorization': 'Basic {}'.format(SPOTIFY_AUTH['base64basicAuth'])},
                                    data={'grant_type': 'client_credentials'})
     token = "Bearer " + json.loads(token_response.text)["access_token"]
 
     headers = {'Accept': 'application/json', 'Content-Type': 'application/json', 'Authorization': token}
-    search_response = requests.get(
-        "https://api.spotify.com/v1/search?q=eminem%20stan&type=track&market=DE&limit=10&offset=0", headers=headers)
+
+    search_text = event["queryStringParameters"]['input']
+    type = 'track'
+    market = 'DE'
+    limit = '10'
+    offset = '0'
+
+    payload = {'q': search_text, 'type': type, 'market': market, 'limit': limit, 'offset': offset}
+    # example search query "https://api.spotify.com/v1/search?q=eminem%20stan&type=track&market=DE&limit=10&offset=0"
+    search_response = requests.get("https://api.spotify.com/v1/search", headers=headers, params=payload)
 
     r_tracks = json.loads(search_response.text)["tracks"]["items"]
     tracks = []
