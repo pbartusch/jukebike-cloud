@@ -7,6 +7,7 @@ import { environment } from '../environments/environment';
  */
 
 export class JukeTrack {
+  artist: string;
   name: string;
   uri: string;
 }
