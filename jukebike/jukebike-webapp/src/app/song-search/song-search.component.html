@@ -1,0 +1,15 @@
+<input class="form-control"
+  type="text"
+  placeholder="Suche nach Title, Artist oder Album ..."
+  (keyup)="instantSearch($event)">
+<ul>
+  <li class="jukebike-search-result-item"
+    *ngFor="let result of resultList; index as idxResult"
+    (click)="wishSong(idxResult)">
+    {{ idxResult }}
+    -
+    {{ result.name }}
+    -
+    {{ result.uri }}
+  </li>
+</ul>

@@ -1,6 +1,41 @@
 # jukebike-cloud
 #saveThePlanetWithMusic JukeBike cloud source code
 
+# JUKEBIKE WEB APP
+
+
+Add the following file to path `jukebike-cloud/jukebike/jukebike-webapp/src/environments/`
+
+`secret_config.ts`
+
+With the following contents:
+
+```
+export const JUKEBIKE_CONF = {
+  API_ROOT: '<protocol and domain of jukebike cloud API>'
+}
+```
+
+## Development setup
+
+Have the latest `Node.js` and `npm` installed.
+Install the Angular CLI.
+
+Steps to reproduce the application setup using Angular CLI:
+
+```
+# in jukebike-cloud/jukebike/
+ng new jukebike-webapp
+cd jukebike-webapp
+ng generate component header
+ng generate component song-search
+ng generate component wish-song
+ng generate component confirm-wish
+ng add @ng-bootstrap/ng-bootstrap
+ng serve
+# open http://localhost:4200
+```
+
 # Instructions
 
 How to get access token for Spotify API? (For Application without User Account Access)
