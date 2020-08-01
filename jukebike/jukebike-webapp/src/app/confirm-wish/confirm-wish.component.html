@@ -1,7 +1,22 @@
-<ng-container *ngIf="currentConfirmation">
-  <p>
-    Position in der Warteschlange: {{ currentConfirmation.queuePosition }}
-    -
-    Noch warten: {{ currentConfirmation.secondsToWait }} Sekunden
-  </p>
-</ng-container>
+<div class="container">
+  <ng-container *ngIf="currentConfirmation">
+    <div class="row mt-2">
+      <div class="col-sm">
+        <div class="alert alert-success" role="alert">
+          <h4 class="alert-heading">Track zur Liste hinzugefügt 👍</h4>
+          <p>
+            Position in der Warteschlange: {{ currentConfirmation.queuePosition }}
+            <br>
+            Noch warten: {{ currentConfirmation.secondsToWait }} Sekunden
+          </p>
+        </div>
+      </div>
+    </div>
+    <hr class="my-4">
+  </ng-container>
+  <div class="row">
+    <div class="col-sm">
+      <button type="button" class="btn btn-link" routerLink="/search" routerLinkActive="active">Neue Suche starten</button>
+    </div>
+  </div>
+</div>
