@@ -9,17 +9,15 @@
         </div>
       </div>
       <div class="col-sm form-group">
-        <form>
-          <label for="myNameInput">Wünsche ich mir:</label>
-          <input id="myNameInput"
-            class="form-control"
-            type="text"
-            placeholder="Mein Name ..."
-            [(ngModel)]="myName">
-        </form>
+        <label for="myNameInput">Wünsche ich mir:</label>
+        <input id="myNameInput"
+          class="form-control"
+          type="text"
+          placeholder="Mein Name ..."
+          [(ngModel)]="myName">
         <button type="button"
           class="btn btn-primary btn-lg btn-block mt-2"
-          (click)="submitTrackWish()">
+          (click)="submitTrackWish($event)">
           Track wünschen
         </button>
       </div>

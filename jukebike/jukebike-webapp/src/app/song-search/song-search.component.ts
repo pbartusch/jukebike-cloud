@@ -12,6 +12,7 @@ export class SongSearchComponent implements OnInit {
 
   searchInput: string = ''
   resultList: Array<JukeTrack> = []
+  showHint = true
 
   constructor(
     private jukeBikeService: JukeBikeService,
@@ -31,8 +32,11 @@ export class SongSearchComponent implements OnInit {
           .searchSong(this.searchInput)
           .then(newResultList => {
             console.log(':: newResultList = ' + newResultList)
+            this.showHint = false
             this.resultList = newResultList
           })
+      } else {
+        this.showHint = true
       }
     }
   }

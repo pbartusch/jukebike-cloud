@@ -22,6 +22,10 @@ export class WishConfirmation {
   secondsToWait: number;
 }
 
+export class AdminSettings {
+  volume: number;
+}
+
 /**
  * service
  */
@@ -38,6 +42,7 @@ export class JukeBikeService {
   private API_ROOT = ""
   private readonly CALL_SEARCH = "/search"
   private readonly CALL_WISH_TRACK = "/wish-track"
+  private readonly CALL_ADMIN_SETTINGS = "/iot-settings"
   private API_HEADERS = new HttpHeaders()
 
   constructor(
@@ -73,4 +78,24 @@ export class JukeBikeService {
       .toPromise()
       .then(resp => resp as WishConfirmation)
   }
+
+  getSettings(): Promise<AdminSettings> {
+    return this.http
+      .get(this.API_ROOT + this.CALL_ADMIN_SETTINGS,
+        {
+          headers:this.API_HEADERS
+        })
+      .toPromise()
+      .then(resp => {
+        console.log("TODO implement")
+        let s = new AdminSettings()
+        s.volume = 100
+        return s
+      })
+  }
+
+  setSettings(settings: AdminSettings) {
+    console.log("TODO implement")
+  }
+
 }

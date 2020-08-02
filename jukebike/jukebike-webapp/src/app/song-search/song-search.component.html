@@ -9,6 +9,9 @@
   </div>
   <div class="row">
     <div class="col-sm">
+      <div *ngIf="showHint" class="alert alert-secondary mt-2">
+        ⬆️ Starte eine Suche und wünsch Dir Deinen Track!
+      </div>
       <ul class="list-group">
         <li class="list-group-item pl-2 border-left border-right border-buttom jukebike-search-item"
           *ngFor="let result of resultList; index as idxResult"

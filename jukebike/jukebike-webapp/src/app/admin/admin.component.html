@@ -1,0 +1,11 @@
+<p *ngIf="adminHint">
+  {{ adminHint }}
+<p>
+<p>
+  Volume:
+  <input type="text"
+    [(ngModel)]="settings.volume">
+</p>
+<p>
+  <button (click)="submitAdminSettings()">Submit settings</button>
+</p>

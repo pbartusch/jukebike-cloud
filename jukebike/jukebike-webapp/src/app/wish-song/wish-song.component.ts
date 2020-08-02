@@ -23,7 +23,7 @@ export class WishSongComponent implements OnInit {
 
   currentWish = this.jukeBikeService.currentWish
 
-  submitTrackWish() {
+  submitTrackWish(event: any) {
     /*
     // TODO remove
     this.songWish = new JukeTrack()
@@ -32,6 +32,9 @@ export class WishSongComponent implements OnInit {
     */
     console.log('In submitTrackWish :: currentWish = ' + JSON.stringify(this.currentWish))
     console.log(':: myName = ' + this.myName)
+
+    event.target.innerHTML = 'Warten ...';
+    event.target.disabled = true;
 
     this.jukeBikeService
       .wishTrack(
