@@ -3,7 +3,6 @@
 from aws_cdk import core
 
 from jukebike.jukebike_stack import JukebikeStack
-from jukebike.pipeline_stack2 import PipelineStack2
 
 from secret_config import AWS_ENV
 
