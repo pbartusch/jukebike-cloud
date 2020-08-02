@@ -1,13 +1,13 @@
 <div class="container">
-  <ng-container *ngIf="currentConfirmation">
+  <ng-container *ngIf="queuePosition != -1">
     <div class="row mt-2">
       <div class="col-sm">
         <div class="alert alert-success" role="alert">
           <h4 class="alert-heading">Track zur Liste hinzugefügt 👍</h4>
           <p>
-            Position in der Warteschlange: {{ currentConfirmation.queuePosition }}
+            Position in der Warteschlange: {{ queuePosition }}
             <br>
-            Noch warten: {{ currentConfirmation.secondsToWait }} Sekunden
+            Warten: {{ readableMinutes }} Min {{ readableSeconds }} Sek
           </p>
         </div>
       </div>
