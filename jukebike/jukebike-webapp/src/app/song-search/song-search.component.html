@@ -1,17 +1,23 @@
-<input class="form-control"
-  type="text"
-  placeholder="Suche nach Title, Artist oder Album ..."
-  (keyup)="instantSearch($event)">
-<ul>
-  <li class="jukebike-search-result-item"
-    *ngFor="let result of resultList; index as idxResult"
-    (click)="wishSong(idxResult)">
-    {{ idxResult }}
-    -
-    {{ result.artist }}
-    -
-    {{ result.name }}
-    -
-    {{ result.uri }}
-  </li>
-</ul>
+<div class="container">
+  <div class="row mt-2">
+    <div class="col-sm">
+      <input class="form-control"
+        type="text"
+        placeholder="Suche nach Title, Artist oder Album ..."
+        (keyup)="instantSearch($event)">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm">
+      <ul class="list-group">
+        <li class="list-group-item pl-2 border-left border-right border-buttom jukebike-search-item"
+          *ngFor="let result of resultList; index as idxResult"
+          (click)="wishSong(idxResult)">
+          {{ result.artist }}
+          -
+          {{ result.name }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
