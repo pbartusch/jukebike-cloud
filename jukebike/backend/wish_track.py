@@ -31,6 +31,11 @@ def handler(event, context):
     print(TRACK_TABLE_NAME)
     print("PutItem succeeded:")
 
+    # get info for the user
+    # TODO use real track and player information
+    queuePosition = track_table.item_count
+    # multiply with guessed average of 3:00 minutes per track
+    secondsToWait = queuePosition * (3*60)
 
     return {
         'statusCode': 200,
@@ -39,5 +44,9 @@ def handler(event, context):
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
         },
-        'body': json.dumps({'status': 'OK', 'queuePosition': 2, 'secondsToWait': 105})
+        'body': json.dumps({
+            'status': 'OK',
+            'queuePosition': queuePosition,
+            'secondsToWait': secondsToWait
+        })
     }
