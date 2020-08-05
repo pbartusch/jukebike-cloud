@@ -5,12 +5,13 @@ from player_utils import CloudPlayer
 
 def handler(event, context):
     print(event)
-    body = json.loads(event["body"])
-    track_uri = body["trackUri"]
-    username = body['username']
+    http_method = event.get("httpMethod")
 
-    #wish track
-    queue_position, seconds_to_wait = CloudPlayer.wish_track(track_uri, username)
+    if http_method == "GET":
+        status_list = CloudPlayer.get_status()
+    elif http_method == "POST":
+        status_param = json.loads(event["body"])
+        status_list = CloudPlayer.set_status(status_param)
 
     return {
         'statusCode': 200,
@@ -19,9 +20,5 @@ def handler(event, context):
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
         },
-        'body': json.dumps({
-            'status': 'OK',
-            'queuePosition': queue_position,
-            'secondsToWait': seconds_to_wait
-        })
+        'body': json.dumps(status_list)
     }

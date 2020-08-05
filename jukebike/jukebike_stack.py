@@ -119,7 +119,7 @@ class JukebikeStack(core.Stack):
             handler=whats_next_lambda,
         )
 
-        ############# Whats-Next API ###################
+        ############# Wish-Track API ###################
         wish_track_lambda = aws_lambda.Function(self, "WishTrackLambda",
                                                 code=aws_lambda.Code.from_asset(lambda_code_location),
                                                 handler="wish_track.handler",
@@ -130,6 +130,19 @@ class JukebikeStack(core.Stack):
         wish_track_api = aws_apigateway.LambdaRestApi(
             self, 'WishTrackEndpoint',
             handler=wish_track_lambda,
+        )
+
+        ############# Status API ###################
+        status_lambda = aws_lambda.Function(self, "StatusLambda",
+                                                code=aws_lambda.Code.from_asset(lambda_code_location),
+                                                handler="stataus.handler",
+                                                runtime=aws_lambda.Runtime.PYTHON_3_7
+                                                )
+        CfnOutput(self, "StatusLambda_", value=status_lambda.function_arn)
+
+        status_api = aws_apigateway.LambdaRestApi(
+            self, 'StatusEndpoint',
+            handler=status_lambda,
         )
 
 
@@ -148,6 +161,7 @@ class JukebikeStack(core.Stack):
         domain.add_base_path_mapping(target_api=search_api, base_path="search")
         domain.add_base_path_mapping(target_api=whats_next_api, base_path="whats-next")
         domain.add_base_path_mapping(target_api=wish_track_api, base_path="wish-track")
+        domain.add_base_path_mapping(target_api=status_api, base_path="status")
 
         target = aws_route53_targets.ApiGatewayDomain(domain)
         record_target = aws_route53.RecordTarget.from_alias(target)
@@ -158,7 +172,9 @@ class JukebikeStack(core.Stack):
 
         ################## Dynamo DB ##############
 
-        # create dynamo table
+
+        ## TRACK TABLE
+        # create dynamo tables
         track_table = aws_dynamodb.Table(
             self, "track_table",
             partition_key=aws_dynamodb.Attribute(
@@ -173,3 +189,19 @@ class JukebikeStack(core.Stack):
 
         track_table.grant_read_write_data(whats_next_lambda)
         whats_next_lambda.add_environment("TRACK_TABLE_NAME", track_table.table_name)
+
+        ## STATUS TABLE
+        status_table = aws_dynamodb.Table(
+            self, "status_table",
+            partition_key=aws_dynamodb.Attribute(
+                name="status_key",
+                type=aws_dynamodb.AttributeType.STRING
+            )
+        )
+
+        # grant permission to lambda  & provide environment variable
+        track_table.grant_read_data(status_lambda)
+        status_lambda.add_environment("STATUS_TABLE_NAME", status_table.table_name)
+
+        track_table.grant_read_write_data(whats_next_lambda)
+        whats_next_lambda.add_environment("STATUS_TABLE_NAME", status_table.table_name)
